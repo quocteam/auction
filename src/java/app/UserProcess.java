@@ -36,6 +36,24 @@ public class UserProcess {
        return false;
     }
     
+    public boolean checkExistUserName(String userName){
+        try {
+            String sql = "select * from tbl_user where userName = ?";
+            
+            PreparedStatement prst = Process.getConnection().prepareStatement(sql);
+            prst.setString(1, userName);
+            ResultSet rs = prst.executeQuery();
+            while (rs.next()) {
+                return true;
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserProcess.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+       return false;
+    }
+    
     public boolean addNewUser(User user){
          int result = 0;
         String sql="INSERT INTO tbl_user VALUES(?,?,?,?,?,?,?,?,?,?)";
