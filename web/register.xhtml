@@ -31,6 +31,9 @@
 		<![endif]-->
     </h:head>
     <h:body>
+        <h:outputScript rendered="#{login_Register_UserBean.showAlert}">
+                    alert("Wrong username or password !!!");
+                </h:outputScript>
         <div id="top-bar" class="container">
 			<div class="row">
 				<div class="span4">
@@ -86,28 +89,29 @@
 				<div class="row">
 					<div class="span4">					
 						<h4 class="title"><span class="text"><strong>Login</strong> Form</span></h4>
-						<form action="#" method="post">
+						<h:form>
 							<input type="hidden" name="next" value="/"/>
 							<fieldset>
 								<div class="control-group">
 									<label class="control-label">Username</label>
 									<div class="controls">
-                                                                            <input type="text" placeholder="Enter your username" id="username" class="input-xlarge"/>
+                                                                            <h:inputText class="input-xlarge" a:placeholder="Enter your username"  value="#{login_Register_UserBean.userName}"/>
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label">Username</label>
+									<label class="control-label">PassWord</label>
 									<div class="controls">
-										<input type="password" placeholder="Enter your password" id="password" class="input-xlarge"/>
+                                                                            <h:inputText a:type="password" class="input-xlarge" a:placeholder="Enter your password"  value="#{login_Register_UserBean.passWord}"/>
 									</div>
 								</div>
 								<div class="control-group">
-									<input tabindex="3" class="btn btn-inverse large" type="submit" value="Sign into your account"/>
+                                                                    <h:commandLink value="Sign into your account" class="btn btn-inverse large" action="${login_Register_UserBean.Login()}"/>
+<!--									<input tabindex="3" class="btn btn-inverse large" type="submit" value="Sign into your account"/>-->
 									<hr/>
 									<p class="reset">Recover your <a tabindex="4" href="#" title="Recover your username or password">username or password</a></p>
 								</div>
 							</fieldset>
-						</form>				
+						</h:form>				
 					</div>
 					<div class="span8">					
 						<h4 class="title"><span class="text"><strong>Register</strong> Form</span></h4>
@@ -169,12 +173,12 @@
                                                                             <h:inputText class="input-xlarge" a:placeholder="Enter your status"  value="#{login_Register_UserBean.status}"></h:inputText>
 									</div>
 								</div>-->
-                                                                <div class="control-group">
+<!--                                                                <div class="control-group">
 									<label class="control-label">Avatar:</label>
 									<div class="controls">
                                                                             <h:inputText class="input-xlarge" a:placeholder="Enter your Avatar"  value="#{login_Register_UserBean.avatars}"></h:inputText>
 									</div>
-								</div>
+								</div>-->
                                                                 <div class="control-group">
                                                                     <label class="control-label">&nbsp;</label>
 									<div class="controls">

@@ -36,6 +36,34 @@ public class UserProcess {
        return false;
     }
     
+    public User getByUserName(String userName){
+        User us = new User();
+         try {
+            String sql = "select * from tbl_user where userName = ?";
+            
+            PreparedStatement prst = Process.getConnection().prepareStatement(sql);
+            prst.setString(1, userName);
+            ResultSet rs = prst.executeQuery();
+            while (rs.next()) {
+             us.setUserID(rs.getString(1));
+             us.setUserName(rs.getString(2));
+             us.setPassWord(rs.getString(3));
+             us.setEmail(rs.getString(4));
+             us.setPhoneNumber(rs.getInt(5));
+             us.setFullName(rs.getString(6));
+             us.setIdentityNumber(rs.getString(7));
+             us.setAddress(rs.getString(8));
+             us.setStatus(rs.getString(9));
+             us.setAvatars(rs.getString(10));
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserProcess.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+       return us;
+    }
+    
     public boolean checkExistUserName(String userName){
         try {
             String sql = "select * from tbl_user where userName = ?";

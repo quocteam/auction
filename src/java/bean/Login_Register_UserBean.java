@@ -6,6 +6,7 @@
 package bean;
 
 import app.UserProcess;
+import javax.faces.context.FacesContext;
 import model.User;
 
 /**
@@ -107,9 +108,32 @@ public class Login_Register_UserBean {
     public void setAvatars(String avatars) {
         this.avatars = avatars;
     }
+    private boolean showAlert;
+
+    public boolean isShowAlert() {
+        return showAlert;
+    }
+
+    public void setShowAlert(boolean showAlert) {
+        this.showAlert = showAlert;
+    }
     
     
     public Login_Register_UserBean() {
+    }
+    
+    public String Login(){
+        UserProcess userProcess = new UserProcess();
+        if(userProcess.CheckLogin(this.userName, this.passWord)){
+            User us = userProcess.getByUserName(this.userName);
+            FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getSessionMap().put("user", us);
+        return "index";
+        }else{
+            this.showAlert = true;
+            return "register";
+        }
+            
     }
     
     public String register(){
@@ -123,11 +147,21 @@ public class Login_Register_UserBean {
         user.setIdentityNumber(this.identityNumber);
         user.setAddress(this.address);
         user.setStatus("Inactive");
-        user.setAvatars(this.avatars);
-        if(up.addNewUser(user))
-            return "index";
+        user.setAvatars("...");
+        if(up.addNewUser(user)){
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getSessionMap().put("user", user);
+        return "index";
+        }
+            
         else
             return "";
+    }
+    
+    public String LogOut(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getSessionMap().remove("user");
+        return "index";
     }
     
 }
