@@ -72,36 +72,41 @@
 					<h:link class="logo pull-left" outcome="index.xhtml"><img src="themes/images/logo.png" class="site_logo" alt=""/></h:link>
 					<nav id="menu" class="pull-right">
 						<ul>
-							<li><a href="./products.html">Đang Diễn Ra</a>					
+							<li><a href="./products.html">Right Now</a>					
 								<ul>
 									<li><a href="./products.html">Lacinia nibh</a></li>									
 									<li><a href="./products.html">Eget molestie</a></li>
 									<li><a href="./products.html">Varius purus</a></li>									
 								</ul>
 							</li>															
-							<li><a href="./products.html">Sắp Diễn Ra</a></li>			
-							<li><a href="./products.html">Đã Kết Thúc</a>
+							<li><a href="./products.html">InComing</a></li>			
+							<li><a href="./products.html">Done</a>
 								<ul>									
 									<li><a href="./products.html">Gifts and Tech</a></li>
 									<li><a href="./products.html">Ties and Hats</a></li>
 									<li><a href="./products.html">Cold Weather</a></li>
 								</ul>
 							</li>							
-							<li><a href="./products.html">Người Thắng Nhiều Nhất</a></li>
-							<li><a href="./products.html">Hỗ Trợ</a></li>
+							<li><a href="./products.html">Rank</a></li>
+							<li><a href="./products.html">Help</a></li>
 						</ul>
 					</nav>
 				</div>
 	    </section>
-<!--            <section class="google_map">
-				<iframe width="100%" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1862.0491978029522!2d105.78184674002512!3d21.028748598148177!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7917af0f83effe1b!2zxJDhuqFpIGjhu41jIEZQVA!5e0!3m2!1svi!2s!4v1500953744670"></iframe>
-			</section>
+            <ui:insert name="gmap" >
+                <section class="google_map">
+                          <iframe width="100%" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1862.0491978029522!2d105.78184674002512!3d21.028748598148177!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7917af0f83effe1b!2zxJDhuqFpIGjhu41jIEZQVA!5e0!3m2!1svi!2s!4v1500953744670"></iframe>
+		</section>
+            </ui:insert>
+            <ui:insert name="headerImg">
 			<section class="header_text sub">
-			<img class="pageBanner" src="themes/images/pageBanner.png" alt="New products" />
-				<h4><span>Contact Us</span></h4>
-			</section>-->
+                                <img class="pageBanner" src="themes/images/pageBanner.png" alt="New products" />
+                                <h4><span><ui:insert name="pageName">Contact Us</ui:insert></span></h4>
+			</section>
+            </ui:insert>    
+            <ui:insert name="slider">
             <section  class="homepage-slider" id="home-slider">
-				<div class="flexslider">
+                <div class="flexslider">
 					<ul class="slides">
 						<li>
 							<img src="themes/images/carousel/banner-1.jpg" alt="" />
@@ -115,12 +120,11 @@
 							</div>
 						</li>
 					</ul>
-				</div>			
+		</div>     
             </section>
-            
+            </ui:insert>
             <section class="main-content">
                 <ui:insert name="content" >
-                          <ui:include src="commonContent.xhtml" />
                 </ui:insert>
             </section>
             <section id="footer-bar">
