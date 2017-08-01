@@ -6,7 +6,15 @@
 package bean;
 
 import app.SessionProcess;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.faces.context.FacesContext;
 import model.Session;
+import model.User;
 
 /**
  *
@@ -23,9 +31,17 @@ private String sessionId;
     private int bid;
     private float lastPrice;
     private String userWinID;
+    private String startDay;
     private String startTime;
-    private String endTime;
     private String status;
+
+    public String getStartDay() {
+        return startDay;
+    }
+
+    public void setStartDay(String startDay) {
+        this.startDay = startDay;
+    }
 
     public String getSessionId() {
         return sessionId;
@@ -115,14 +131,6 @@ private String sessionId;
         this.startTime = startTime;
     }
 
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -146,9 +154,17 @@ private String sessionId;
     }
     
     public String addNew(){
+    try {
+       
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = format.parse(this.startDay);
+        Date end = new Date(date.getTime() + (1000 * 60 * 60 * 24));
+        String endDate = end.getYear()+"-"+end.getMonth()+"-"+end.getDay();
+        FacesContext context = FacesContext.getCurrentInstance();
+        User us =  (User) context.getExternalContext().getSessionMap().get("user");
         SessionProcess up = new SessionProcess();
         Session session = new Session();
-        session.setUserCreateID(this.userCreateID);
+        session.setUserCreateID(us.getUserID());
         session.setProductName(this.productName);
         session.setProductType(this.productType);
         session.setProductInformation(this.productInformation);
@@ -157,14 +173,22 @@ private String sessionId;
         session.setBid(0);
         session.setLastPrice(0);
         session.setUserWinID(null);
-        session.setStartTime(this.startTime);
-        session.setEndTime(this.endTime);
+        session.setStartTime(this.startDay+" "+this.startTime);
+        session.setEndTime(endDate+" "+this.startTime);
         session.setStatus("Inactive");
         if(up.AddNewSession(session)){
-        return "index";
+            return "index";
         }
             
         else
             return "";
+    } catch (ParseException ex) {
+        Logger.getLogger(Add_Product_SessionBean.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return "";
+    }
+    
+    public String returnIndex(){
+        return "index";
     }
 }

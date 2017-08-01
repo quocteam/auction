@@ -5,7 +5,8 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
       <meta charset="utf-8"/>
 		<title>Bootstrap E-commerce Templates</title>
@@ -30,62 +31,33 @@
 			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 			<script src="js/respond.min.js"></script>
 		<![endif]-->
+                <script>
+                  $( function() {
+                    $( ".datepicker" ).datepicker({ minDate: +0, maxDate: "+10D",dateFormat: 'yy-mm-dd' });
+                     $('.timepicker').timepicker({
+                        timeFormat: 'h:mm:ss',
+                        interval: 60,
+                        defaultTime: '11',
+                        startTime: '10:00',
+                        dynamic: false,
+                        dropdown: true,
+                        scrollbar: true
+                    });
+                  } );
+                  </script>
+        
     </h:head>
     <h:body>
+        <c:choose>
+            <c:when test="${session.getAttribute('user') == null}">
+              <script type="text/javascript">
+                    window.location = "index.xhtml";
+                </script>
+            </c:when>
+        </c:choose>
         <h:outputScript rendered="#{add_Product_SessionBean.showAlert}">
                     alert("Wrong !!!");
                 </h:outputScript>
-<!--        <div id="top-bar" class="container">
-			<div class="row">
-				<div class="span4">
-					<form method="POST" class="search_form">
-						<input type="text" class="input-block-level search-query" Placeholder="eg. T-sirt"/>
-					</form>
-				</div>
-				<div class="span8">
-					<div class="account pull-right">
-						<ul class="user-menu">				
-							<li><a href="#">My Account</a></li>
-							<li><a href="cart.html">Your Cart</a></li>
-							<li><a href="checkout.html">Checkout</a></li>					
-							<li><a href="register.html">Login</a></li>		
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="wrapper" class="container">
-			<section class="navbar main-menu">
-				<div class="navbar-inner main-menu">				
-					<a href="index.html" class="logo pull-left"><img src="themes/images//logo.png" class="site_logo" alt=""/></a>
-					<nav id="menu" class="pull-right">
-						<ul>
-							<li><a href="./products.html">Woman</a>					
-								<ul>
-									<li><a href="./products.html">Lacinia nibh</a></li>									
-									<li><a href="./products.html">Eget molestie</a></li>
-									<li><a href="./products.html">Varius purus</a></li>									
-								</ul>
-							</li>															
-							<li><a href="./products.html">Man</a></li>			
-							<li><a href="./products.html">Sport</a>
-								<ul>									
-									<li><a href="./products.html">Gifts and Tech</a></li>
-									<li><a href="./products.html">Ties and Hats</a></li>
-									<li><a href="./products.html">Cold Weather</a></li>
-								</ul>
-							</li>							
-							<li><a href="./products.html">Hangbag</a></li>
-							<li><a href="./products.html">Best Seller</a></li>
-							<li><a href="./products.html">Top Seller</a></li>
-						</ul>
-					</nav>
-				</div>
-			</section>			
-			<section class="header_text sub">
-			<img class="pageBanner" src="themes/images/pageBanner.png" alt="New products" />
-				<h4><span>Login or Regsiter</span></h4>
-			</section>			-->
 <ui:composition template="layout/commonLayout.xhtml">
     <ui:define name="gmap">
     </ui:define>
@@ -98,19 +70,11 @@
 			<section class="main-content">				
 				<div class="row">
 					<div class="span8">					
-						<h4 class="title"><span class="text"><strong>Register</strong> Form</span></h4>
+						<h4 class="title"><span class="text"><strong>Add</strong> Product</span></h4>
                                                 <h:form id="myform" class="form-stacked">
 							<fieldset>
                                                              <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
                                                             <div class="span4">
-                                                            <div class="control-group">
-									<label class="control-label">User Create:</label>
-									<div class="controls">
-                                                                            <h:inputText class="input-xlarge" a:placeholder="Enter your user name"  value="#{add_Product_SessionBean.userCreateID}">
-                                                                                <!--<f:validator validatorId="UserCreateValidator"/>-->
-                                                                            </h:inputText>
-									</div>
-								</div>
 								<div class="control-group">
 									<label class="control-label">Product Name:</label>
 									<div class="controls">
@@ -120,14 +84,18 @@
                                                                 <div class="control-group">
 									<label class="control-label">Product Type:</label>
 									<div class="controls">
-                                                                            <h:inputText class="input-xlarge" a:placeholder="Enter your product type"  value="#{add_Product_SessionBean.productType}"></h:inputText>
+                                                                            <h:selectOneMenu class="input-xlarge" value = "#{add_Product_SessionBean.productType}" >                     
+                                                                                <f:selectItem itemValue = "Vehicle" itemLabel = "Vehicle" />
+                                                                                <f:selectItem itemValue = "Technology" itemLabel = "Technology" />
+                                                                                <f:selectItem itemValue = "Other" itemLabel = "Other" />
+                                                                            </h:selectOneMenu>
 									</div>
 								</div>
                                                                
                                                                 <div class="control-group">
 									<label class="control-label">Infomation:</label>
 									<div class="controls">
-                                                                            <h:inputText class="input-xlarge" a:placeholder="Enter your product information"  value="#{add_Product_SessionBean.productInformation}"></h:inputText>
+                                                                            <h:inputText class="input-xlarge"  a:placeholder="Enter your product information"  value="#{add_Product_SessionBean.productInformation}"></h:inputText>
 									</div>
 								</div>
                                                                 </div>
@@ -146,20 +114,15 @@
                                                                 <div class="control-group">
 									<label class="control-label">Start Time</label>
 									<div class="controls">
-                                                                            <h:inputText class="input-xlarge" a:placeholder="Enter start time"  value="#{add_Product_SessionBean.startTime}"></h:inputText>
+                                                                            <h:inputText class="input-xlarge datepicker" a:placeholder="Enter start time"  value="#{add_Product_SessionBean.startDay}"></h:inputText>
+                                                                            <h:inputText class="input-xlarge timepicker" a:placeholder="Enter start time"  value="#{add_Product_SessionBean.startTime}">
+                                                                            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                                                                            </h:inputText>
 									</div>
 								</div>
-                                                                <div class="control-group">
-									<label class="control-label">End Time</label>
-									<div class="controls">
-                                                                            <h:inputText class="input-xlarge" a:placeholder="Enter end time"  value="#{add_Product_SessionBean.endTime}"></h:inputText>
-									</div>
-								</div>
-                                                                
                                                                 <div class="control-group">
                                                                     <label class="control-label">&nbsp;</label>
 									<div class="controls">
-<!--                                                                            <p:commandButton id="submitButton" action="${add_Product_SessionBean.addNew()}" value="Submit" />-->
                                                                             <h:commandLink value="Create Product" class="btn btn-inverse large" action="${add_Product_SessionBean.addNew()}"/>
 									</div>
 								</div>
@@ -171,52 +134,7 @@
 				</div>
 			</section>
         </ui:define></ui:composition>
-<!--			<section id="footer-bar">
-				<div class="row">
-					<div class="span3">
-						<h4>Navigation</h4>
-						<ul class="nav">
-							<li><a href="./index.html">Homepage</a></li>  
-							<li><a href="./about.html">About Us</a></li>
-							<li><a href="./contact.html">Contac Us</a></li>
-							<li><a href="./cart.html">Your Cart</a></li>
-							<li><a href="./register.html">Login</a></li>							
-						</ul>					
-					</div>
-					<div class="span4">
-						<h4>My Account</h4>
-						<ul class="nav">
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">Order History</a></li>
-							<li><a href="#">Wish List</a></li>
-							<li><a href="#">Newsletter</a></li>
-						</ul>
-					</div>
-					<div class="span5">
-						<p class="logo"><img src="themes/images/logo.png" class="site_logo" alt=""/></p>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p>
-						<br/>
-						<span class="social_icons">
-							<a class="facebook" href="#">Facebook</a>
-							<a class="twitter" href="#">Twitter</a>
-							<a class="skype" href="#">Skype</a>
-							<a class="vimeo" href="#">Vimeo</a>
-						</span>
-					</div>					
-				</div>	
-			</section>
-			<section id="copyright">
-				<span>Copyright 2013 bootstrappage template  All right reserved.</span>
-			</section>
-		</div>
-		<script src="themes/js/common.js"></script>
-		<script>
-			$(document).ready(function() {
-				$('#checkout').click(function (e) {
-					document.location.href = "checkout.html";
-				})
-			});
-		</script>-->
+        
     </h:body>
 </html>
 
