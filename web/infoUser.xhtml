@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+             
+        <meta charset="utf-8"/>
+		<title>Thông tin cá nhân</title> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="description" content=""/>
+		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+		<!-- bootstrap -->
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>      
+		<link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet"/>		
+		<link href="themes/css/bootstrappage.css" rel="stylesheet"/>
+		
+		<!-- global styles -->
+		<link href="themes/css/flexslider.css" rel="stylesheet"/>
+		<link href="themes/css/main.css" rel="stylesheet"/>
+
+		<!-- scripts -->
+		<script src="themes/js/jquery-1.7.2.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>				
+		<script src="themes/js/superfish.js"></script>	
+		<script src="themes/js/jquery.scrolltotop.js"></script>
+    </h:head>
+    <h:body>
+        
+            
+        <ui:composition template="commonLayout.xhtml">
+            <ui:define name="content">
+			<section class="main-content">
+        <div class="row" style="margin-top: 50px; margin-left: 30px">
+                                        <div class="span3">
+                                            <h:form>
+                                                
+                                                    
+                                            <h4 class="title"><span class="text"><strong><h:outputText value="#{msg['infoUser.Category']}"/></strong></span></h4>
+                                            <ul class="nav">                                                
+                                                <li> <p:commandLink id="info" update="form" action="#{login_Register_UserBean.getData()}">
+                                                    <h:outputText value="#{msg['infoUser.Info']}"/>
+                                                    </p:commandLink></li>
+                                                <li><p:commandLink>
+                                                    <h:outputText value="#{msg['infoUser.OrderList']}"/>
+                                                    </p:commandLink> </li>             
+                                            </ul>
+                                            </h:form>
+                                        </div>
+            <div class="span8">					
+						<h4 class="title"><span class="text"><strong><h:outputText value="#{msg['infoUser.Info']}"/></strong></span></h4>
+                                                
+                                                
+                                                <h:form id="form" class="form-stacked" >
+							<fieldset>
+                                                             
+                                                                
+                                                            <div >                                                               
+								<div class="control-group">
+									<!--<label class="control-label">Username: </label>-->
+									<div class="controls">
+                                                                            <h:outputLabel class="input-xlarge" value="Username:"  ></h:outputLabel>
+                                                                            <!--<h:outputText value="#{login_Register_UserBean.userName}"></h:outputText>-->
+                                                                                <h:inputText value="#{login_Register_UserBean.userName}"></h:inputText>
+                                                                             
+									</div>
+								</div>
+                                                            <div class="control-group">
+									<!--<label class="control-label">Password:</label>-->
+									<div class="controls">
+                                                                            <h:outputLabel a:type="password" class="input-xlarge" value="Password:" ></h:outputLabel>
+                                                                               <!--<h:outputText value="#{login_Register_UserBean.passWord}"></h:outputText>-->
+                                                                               <h:inputText value="#{login_Register_UserBean.passWord}"></h:inputText>
+                                                                            
+									</div>
+								</div>
+								<div class="control-group">
+									<!--<label class="control-label">Email address:</label>-->
+									<div class="controls">
+                                                                            <h:outputLabel a:type="email" class="input-xlarge" value="Email address:"></h:outputLabel>
+                                                                                <!--<h:outputText value="#{login_Register_UserBean.email}"></h:outputText>-->
+                                                                                <h:inputText value="#{login_Register_UserBean.email}"></h:inputText>
+                                                                            
+									</div>
+								</div>
+                                                                <div class="control-group">
+									<!--<label class="control-label">Phone number:</label>-->
+									<div class="controls">
+                                                                            <h:outputLabel class="input-xlarge" value="Phone number:" > </h:outputLabel>
+                                                                            <!--<h:outputText value="#{login_Register_UserBean.phoneNumber}"></h:outputText>-->
+                                                                            <h:inputText value="#{login_Register_UserBean.phoneNumber}"></h:inputText>
+                                                                           
+									</div>
+								</div>
+                                                               
+                                                                <div class="control-group">
+									<!--<label class="control-label">Your fullname:</label>-->
+									<div class="controls">
+                                                                            <h:outputLabel class="input-xlarge" value="Your fullname:" ></h:outputLabel>
+                                                                                <!--<h:outputText value="#{login_Register_UserBean.fullName}" ></h:outputText>-->
+                                                                                <h:inputText value="#{login_Register_UserBean.fullName}"></h:inputText>
+                                                                            
+									</div>
+								</div>
+                                                                
+                                                                <div class="control-group">
+									<!--<label class="control-label">Identity Number:</label>-->
+									<div class="controls">
+                                                                            <h:outputLabel class="input-xlarge" value="Identity Number:" ></h:outputLabel>
+                                                                                <!--<h:outputText value="#{login_Register_UserBean.identityNumber}"></h:outputText>-->
+                                                                                <h:inputText value="#{login_Register_UserBean.identityNumber}"></h:inputText>
+                                                                            
+									</div>
+								</div>
+                                                                <div class="control-group">
+									<!--<label class="control-label">Address:</label>-->
+									<div class="control-label">
+                                                                            <h:outputLabel class="input-xlarge" value="Address:"  ></h:outputLabel>
+                                                                                <!--<h:outputText value="#{login_Register_UserBean.address}"></h:outputText>-->
+                                                                                <h:inputText value="#{login_Register_UserBean.address}"></h:inputText>
+                                                                            
+									</div>
+								</div>
+                                                                </div>
+                                                        
+							</fieldset>
+						</h:form>
+                                                 
+    
+					</div>	
+		</div>
+                        </section>
+            </ui:define>
+                        
+        </ui:composition>
+    </h:body>
+</html>

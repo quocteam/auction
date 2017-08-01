@@ -128,7 +128,7 @@ public class Login_Register_UserBean {
             User us = userProcess.getByUserName(this.userName);
             FacesContext context = FacesContext.getCurrentInstance();
         context.getExternalContext().getSessionMap().put("user", us);
-        return "index";
+        return "infoUser";
         }else{
             this.showAlert = true;
             return "register";

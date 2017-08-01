@@ -58,6 +58,20 @@
 						<input type="text" class="input-block-level search-query" Placeholder="eg. T-sirt"/>
 					</form>
 				</div>
+                <div class="span1">
+                                    <h:form>
+                                        <h:commandLink styleClass="us" action="#{language.changeLanguage('en')}" value="English">
+                                            <h:graphicImage value="themes/images/language/English.jpg" width="20px" height="25px"/>
+                                        </h:commandLink>                                      
+                                    
+                                    </h:form>  
+                                </div>
+                                <div class="span1">
+                                    <h:form>                                       
+                                        <h:commandLink styleClass="be" action="#{language.changeLanguage('vi')}" value="Vietnam"/>
+                                        <h:graphicImage value="themes/images/language/Vn.png" width="20px" height="25px"/>
+                                    </h:form>  
+                                </div>
 				<div class="span8">
 					<div class="account pull-right">
 						<ul class="user-menu">	

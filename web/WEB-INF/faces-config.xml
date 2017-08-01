@@ -18,4 +18,24 @@
         <managed-bean-class>bean.Add_Product_SessionBean</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+            <managed-bean-name>langugeBean</managed-bean-name>
+            <managed-bean-class>bean.LangugeBean</managed-bean-class>
+
+            <managed-bean-scope>request</managed-bean-scope>
+        </managed-bean>
+        
+        <application>
+     	   <locale-config>
+     	        <default-locale>en</default-locale>
+                <!--<supported-locale>en</supported-locale>-->
+                <supported-locale>vi</supported-locale>
+     	   </locale-config>
+           
+	   <resource-bundle>
+		<base-name>language.messages_en</base-name>
+		<var>msg</var>
+	   </resource-bundle>
+    
+        </application>
 </faces-config>
