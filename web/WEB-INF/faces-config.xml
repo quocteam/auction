@@ -8,4 +8,9 @@
         <managed-bean-class>bean.Login_Register_UserBean</managed-bean-class>
     
         <managed-bean-scope>request</managed-bean-scope></managed-bean>
+    <managed-bean>
+        <managed-bean-name>detailProduct_SessionBean</managed-bean-name>
+        <managed-bean-class>bean.DetailProduct_SessionBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
 </faces-config>

@@ -24,7 +24,17 @@ public class Session {
     private String userWinID;
     private String startTime;
     private String endTime;
+    private String avatar;
     private String status;
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+    
 
     public String getSessionId() {
         return sessionId;
@@ -133,7 +143,7 @@ public class Session {
     public Session() {
     }
 
-    public Session(String sessionId, String userCreateID, String productName, String productType, String productInformation, float startPrice, float stepPrice, int bid, float lastPrice, String userWinID, String startTime, String endTime, String status) {
+    public Session(String sessionId, String userCreateID, String productName, String productType, String productInformation, float startPrice, float stepPrice, int bid, float lastPrice, String userWinID, String startTime, String endTime, String status,String avatar) {
         this.sessionId = sessionId;
         this.userCreateID = userCreateID;
         this.productName = productName;
@@ -147,6 +157,7 @@ public class Session {
         this.startTime = startTime;
         this.endTime = endTime;
         this.status = status;
+        this.avatar = avatar;
     }
     
 }
