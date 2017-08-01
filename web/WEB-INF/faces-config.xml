@@ -13,4 +13,9 @@
         <managed-bean-class>bean.DetailProduct_SessionBean</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>add_Product_SessionBean</managed-bean-name>
+        <managed-bean-class>bean.Add_Product_SessionBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
 </faces-config>
