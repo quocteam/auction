@@ -37,106 +37,175 @@ and open the template in the editor.
     <h:body>
         
             
-        <ui:composition template="commonLayout.xhtml">
+        <ui:composition template="layout/commonLayout.xhtml">
+            <ui:define name="gmap">
+            </ui:define>
+            <ui:define name="slider">
+            </ui:define>
+            <ui:define name="pageName">
+                USER PAGE
+            </ui:define>
             <ui:define name="content">
 			<section class="main-content">
         <div class="row" style="margin-top: 50px; margin-left: 30px">
-                                        <div class="span3">
+                                        <div class="span2">
                                             <h:form>
-                                                
-                                                    
                                             <h4 class="title"><span class="text"><strong><h:outputText value="#{msg['infoUser.Category']}"/></strong></span></h4>
-                                            <ul class="nav">                                                
-                                                <li> <p:commandLink id="info" update="form" action="#{login_Register_UserBean.getData()}">
-                                                    <h:outputText value="#{msg['infoUser.Info']}"/>
-                                                    </p:commandLink></li>
-                                                <li><p:commandLink>
-                                                    <h:outputText value="#{msg['infoUser.OrderList']}"/>
-                                                    </p:commandLink> </li>             
-                                            </ul>
+                                                    <ul class="nav nav-pills nav-stacked" >
+                                                            <li class="active"><a href="#tab1" data-toggle="tab">User Infomation</a></li>
+                                                            <li><a href="#tab2" data-toggle="tab">Add New Product</a></li>
+                                                            <li><a href="#tab3" data-toggle="tab">Product List</a></li>
+                                                    </ul>
                                             </h:form>
                                         </div>
-            <div class="span8">					
+                                        <div class="tab-content">
+                                        <div class="span9 tab-pane fade in active" id="tab1">					
 						<h4 class="title"><span class="text"><strong><h:outputText value="#{msg['infoUser.Info']}"/></strong></span></h4>
-                                                
-                                                
                                                 <h:form id="form" class="form-stacked" >
 							<fieldset>
-                                                             
-                                                                
-                                                            <div >                                                               
+                                                            <div class="span4">                                                               
 								<div class="control-group">
-									<!--<label class="control-label">Username: </label>-->
 									<div class="controls">
                                                                             <h:outputLabel class="input-xlarge" value="Username:"  ></h:outputLabel>
-                                                                            <!--<h:outputText value="#{login_Register_UserBean.userName}"></h:outputText>-->
-                                                                                <h:inputText value="#{login_Register_UserBean.userName}"></h:inputText>
+                                                                            <h:inputText readonly="true" value="${session.getAttribute('user').userName}"></h:inputText>
                                                                              
 									</div>
 								</div>
                                                             <div class="control-group">
-									<!--<label class="control-label">Password:</label>-->
 									<div class="controls">
-                                                                            <h:outputLabel a:type="password" class="input-xlarge" value="Password:" ></h:outputLabel>
-                                                                               <!--<h:outputText value="#{login_Register_UserBean.passWord}"></h:outputText>-->
-                                                                               <h:inputText value="#{login_Register_UserBean.passWord}"></h:inputText>
+                                                                            <h:outputLabel  class="input-xlarge" value="Password:" ></h:outputLabel>
+                                                                               <h:inputText a:type="password" value="${session.getAttribute('user').passWord}"></h:inputText>
                                                                             
 									</div>
 								</div>
 								<div class="control-group">
-									<!--<label class="control-label">Email address:</label>-->
 									<div class="controls">
                                                                             <h:outputLabel a:type="email" class="input-xlarge" value="Email address:"></h:outputLabel>
-                                                                                <!--<h:outputText value="#{login_Register_UserBean.email}"></h:outputText>-->
-                                                                                <h:inputText value="#{login_Register_UserBean.email}"></h:inputText>
+                                                                            <h:inputText readonly="true" value="${session.getAttribute('user').email}"></h:inputText>
                                                                             
 									</div>
 								</div>
                                                                 <div class="control-group">
-									<!--<label class="control-label">Phone number:</label>-->
 									<div class="controls">
                                                                             <h:outputLabel class="input-xlarge" value="Phone number:" > </h:outputLabel>
-                                                                            <!--<h:outputText value="#{login_Register_UserBean.phoneNumber}"></h:outputText>-->
-                                                                            <h:inputText value="#{login_Register_UserBean.phoneNumber}"></h:inputText>
+                                                                            <h:inputText readonly="true" value="${session.getAttribute('user').phoneNumber}"></h:inputText>
                                                                            
 									</div>
 								</div>
-                                                               
+                                                                </div>
+                                                                
+                                                                <div class="span4">
                                                                 <div class="control-group">
-									<!--<label class="control-label">Your fullname:</label>-->
 									<div class="controls">
                                                                             <h:outputLabel class="input-xlarge" value="Your fullname:" ></h:outputLabel>
-                                                                                <!--<h:outputText value="#{login_Register_UserBean.fullName}" ></h:outputText>-->
-                                                                                <h:inputText value="#{login_Register_UserBean.fullName}"></h:inputText>
+                                                                            <h:inputText readonly="true" value="${session.getAttribute('user').fullName}"></h:inputText>
                                                                             
 									</div>
 								</div>
                                                                 
                                                                 <div class="control-group">
-									<!--<label class="control-label">Identity Number:</label>-->
 									<div class="controls">
                                                                             <h:outputLabel class="input-xlarge" value="Identity Number:" ></h:outputLabel>
-                                                                                <!--<h:outputText value="#{login_Register_UserBean.identityNumber}"></h:outputText>-->
-                                                                                <h:inputText value="#{login_Register_UserBean.identityNumber}"></h:inputText>
+                                                                            <h:inputText readonly="true" value="${session.getAttribute('user').identityNumber}"></h:inputText>
                                                                             
 									</div>
 								</div>
                                                                 <div class="control-group">
-									<!--<label class="control-label">Address:</label>-->
 									<div class="control-label">
                                                                             <h:outputLabel class="input-xlarge" value="Address:"  ></h:outputLabel>
-                                                                                <!--<h:outputText value="#{login_Register_UserBean.address}"></h:outputText>-->
-                                                                                <h:inputText value="#{login_Register_UserBean.address}"></h:inputText>
+                                                                                <h:inputText value="${session.getAttribute('user').address}"></h:inputText>
                                                                             
 									</div>
 								</div>
+                                                                <div class="control-group">
+									<div class="control-label">
+                                                                            <h:outputLabel class="input-xlarge" value="&#160;"  ></h:outputLabel>
+                                                                                 <h:commandLink value="Update your account" class="btn btn-inverse large" action="${login_Register_UserBean.updateUserInfo()}"/>
+                                                                            
+									</div>
+								</div>
+                                                                    
                                                                 </div>
+                                                                
                                                         
 							</fieldset>
 						</h:form>
                                                  
     
-					</div>	
+					</div>
+            
+                                        <div class="span8 tab-pane fade" id="tab2">
+                                            <h4 class="title"><span class="text"><strong>Add Product</strong></span></h4>
+                                            <h:form enctype="multipart/form-data" id="myform" class="form-stacked">
+							<fieldset>
+                                                             <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                                                            <div class="span4">
+								<div class="control-group">
+									<label class="control-label">Product Name:</label>
+									<div class="controls">
+                                                                            <h:inputText a:type="email" class="input-xlarge" a:placeholder="Enter your product name"  value="#{add_Product_SessionBean.productName}"></h:inputText>
+									</div>
+								</div>
+                                                                <div class="control-group">
+									<label class="control-label">Product Type:</label>
+									<div class="controls">
+                                                                            <h:selectOneMenu class="input-xlarge" value = "#{add_Product_SessionBean.productType}" >                     
+                                                                                <f:selectItem itemValue = "Vehicle" itemLabel = "Vehicle" />
+                                                                                <f:selectItem itemValue = "Technology" itemLabel = "Technology" />
+                                                                                <f:selectItem itemValue = "Other" itemLabel = "Other" />
+                                                                            </h:selectOneMenu>
+									</div>
+								</div>
+                                                               
+                                                                <div class="control-group">
+									<label class="control-label">Infomation:</label>
+									<div class="controls">
+                                                                            <h:inputText class="input-xlarge"  a:placeholder="Enter your product information"  value="#{add_Product_SessionBean.productInformation}"></h:inputText>
+									</div>
+								</div>
+                                                                <div class="control-group">
+									<label class="control-label">Infomation:</label>
+									<div class="controls">
+                                                                            <input id="kv-explorer" type="file" name="image[]" multiple="true"/>
+									</div>
+								</div>
+                                                               
+                                                                </div>
+                                                                <div class="control-group">
+									<label class="control-label">Start Price:</label>
+									<div class="controls">
+                                                                            <h:inputText a:type="number" class="input-xlarge" a:placeholder="Enter start price"  value="#{add_Product_SessionBean.startPrice}"></h:inputText>
+									</div>
+								</div>
+                                                                <div class="control-group">
+									<label class="control-label">Step Price</label>
+									<div class="controls">
+                                                                            <h:inputText a:type="number" class="input-xlarge" a:placeholder="Enter step price"  value="#{add_Product_SessionBean.stepPrice}"></h:inputText>
+									</div>
+								</div>
+                                                                <div class="control-group">
+									<label class="control-label">Start Time</label>
+									<div class="controls">
+                                                                            <h:inputText class="input-xlarge datepicker" a:placeholder="Enter start time"  value="#{add_Product_SessionBean.startDay}"></h:inputText>
+                                                                            <h:inputText class="input-xlarge timepicker" a:placeholder="Enter start time"  value="#{add_Product_SessionBean.startTime}">
+                                                                            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                                                                            </h:inputText>
+									</div>
+								</div>
+                                                                <div class="control-group">
+                                                                    <label class="control-label"></label>
+									<div class="controls">
+                                                                            <h:commandLink value="Create Product" class="btn btn-inverse large" action="${add_Product_SessionBean.addNew()}"/>
+									</div>
+								</div>
+							</fieldset>
+						</h:form>
+                                        </div>
+            
+                                        <div class="span8 tab-pane fade" id="tab3">
+                                            <h4 class="title"><span class="text"><strong>Product List</strong></span></h4>
+                                        </div>
+                                        </div>
 		</div>
                         </section>
             </ui:define>

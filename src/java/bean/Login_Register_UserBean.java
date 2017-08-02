@@ -158,6 +158,10 @@ public class Login_Register_UserBean {
             return "";
     }
     
+    public String updateUserInfo(){
+        return "infoUser";
+    }
+    
     public String LogOut(){
         FacesContext context = FacesContext.getCurrentInstance();
         context.getExternalContext().getSessionMap().remove("user");
